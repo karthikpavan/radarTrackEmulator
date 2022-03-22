@@ -19,19 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 public class RadartrackController {
 
-
-
-  @Autowired
-  private RadartrackRepository radartrackRepository;
+  private Logger logger = LoggerFactory.getLogger(RadartrackController.class);
 
   @Autowired
   RadarTrackService radarTrackService;
 
-//  @PostMapping("/saveData")
-//  public Long saveData(@RequestBody Radartrack radartrack) {
-//    radartrackRepository.save(radartrack);
-//    return radartrack.getId();
-//  }
 
   @PostMapping("/saveData")
   public ResponseEntity<?> saveData(@RequestBody Radartrack radartrack) {
@@ -42,7 +34,7 @@ public class RadartrackController {
 
   @GetMapping("/getData")
   public List<Radartrack> getData() {
-    return radartrackRepository.findAll();
+    return radarTrackService.getData();
   }
 
   @GetMapping(value = {"/"})
