@@ -24,22 +24,16 @@ public class RadartrackController {
   @Autowired
   RadarTrackService radarTrackService;
 
+
   @PostMapping("/saveData")
   public ResponseEntity<?> saveData(@RequestBody Radartrack radartrack) {
-    logger.debug("Radar Data received : "
-        + radartrack.getId() + ","
-        + radartrack.getLatitude() + ","
-        + radartrack.getLatitude() + ","
-        + radartrack.getSpeed() + ","
-        + radartrack.getHeading() + ","
-        + radartrack.getArea_types());
     radarTrackService.saveData(radartrack);
-    return new ResponseEntity("Radar data added successfully ", HttpStatus.OK);
+    return new ResponseEntity("Radar added successfully", HttpStatus.OK);
   }
+
 
   @GetMapping("/getData")
   public List<Radartrack> getData() {
-    logger.debug(">> getting all available data from DB >>");
     return radarTrackService.getData();
   }
 
