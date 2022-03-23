@@ -1,4 +1,8 @@
 # radarTrackEmulator
+Installation Steps for MongoDB: 
+step 1: download - https://www.mongodb.com/try/download/community
+step 2: Create DB & Collection by using commandline/MongoDBCompass by providing appropriate names
+
 Radar Tracker Emulator : This app will display Latitude, Longitude, speed(hrs/km), Heading(0-360*) & the AreaType 
 
 All sample data's displayed / pushed to MongoDB are randonmly generated with respect to java code.
