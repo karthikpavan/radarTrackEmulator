@@ -6,13 +6,23 @@ All sample data's displayed / pushed to MongoDB are randonmly generated with res
 API's :
    Created 2 api's as mentioned below :
             1. http://localhost:9191/api/v1/saveData : insert record
-            2. http://localhost:9191/api/v1/fetchData : fetch record
+            ![image](https://user-images.githubusercontent.com/10458982/159689610-fd6ec664-1cfb-4587-8701-eba1918ae22f.png)
+
             
-Database details :
+   
+            2. http://localhost:9191/api/v1/fetchData : fetch record
+            ![image](https://user-images.githubusercontent.com/10458982/159689698-7890c112-8bc0-4d16-83b8-e1a00f804077.png)
+
+
+            
+MongoDB details:
     Database Name : Radartrack
     Collection Name : Radartrack
     
+    ![image](https://user-images.githubusercontent.com/10458982/159690139-4edbeb31-481e-49c0-9d5b-4af8e9ee9294.png)
+    
    Sample DB output :
+   
    ![image](https://user-images.githubusercontent.com/10458982/159688959-eec8c84d-19b8-4a85-8a01-2e13fe967bc6.png)
 
 
