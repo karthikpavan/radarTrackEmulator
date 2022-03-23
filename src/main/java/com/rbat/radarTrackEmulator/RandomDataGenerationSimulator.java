@@ -162,7 +162,7 @@ public class RandomDataGenerationSimulator {
               + dataList.get(j).getArea_types());
 
           for (Radartrack dataId : allData) {
-            System.out.println("ID : " + dataId.getId());
+            logger.info("ID : " + dataId.getId());
             if (dataList.get(j).getId() != dataId.getId()) {
               mongoTemplate.remove(Query.query(Criteria.where("id").is(dataId.getId())), Radartrack.class);
             }
