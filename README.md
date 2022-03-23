@@ -8,13 +8,11 @@ API's :
             1. http://localhost:9191/api/v1/saveData : insert record
             ![image](https://user-images.githubusercontent.com/10458982/159689610-fd6ec664-1cfb-4587-8701-eba1918ae22f.png)
 
-            
-   
-            2. http://localhost:9191/api/v1/fetchData : fetch record
-            ![image](https://user-images.githubusercontent.com/10458982/159689698-7890c112-8bc0-4d16-83b8-e1a00f804077.png)
+      
+           2. http://localhost:9191/api/v1/fetchData : fetch record
+           ![image](https://user-images.githubusercontent.com/10458982/159690685-f3a2e062-0dde-45fc-b5df-39182c51362a.png)
 
-
-            
+  
 MongoDB details:
     Database Name : Radartrack
     Collection Name : Radartrack
