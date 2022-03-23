@@ -14,6 +14,9 @@ import java.util.TimerTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -36,29 +39,33 @@ public class RandomDataGenerationSimulator {
   @Autowired
   RadarTrackService radarTrackService;
 
-  long delay = 9000; // delay in milliseconds
+  @Autowired
+  MongoTemplate mongoTemplate;
+
+  long delay = 5000;
   LoopTask task = new LoopTask();
   Timer timer = new Timer("TaskName");
 
   public void start() {
-    System.out.println(">> start function starts >>");
+    logger.info(">> start function starts >>");
     timer.cancel();
     timer = new Timer("TaskName");
     Date executionDate = new Date(); // no params = now
     timer.scheduleAtFixedRate(task, executionDate, delay);
-    System.out.println("<< start function ends <<");
+    logger.info("<< start function ends <<");
   }
 
   private class LoopTask extends TimerTask {
 
     public void run() {
+      List<Radartrack> allData = radarTrackService.getData();
 
       radartrack = new Radartrack();
       for (int i = 1; i <= 3; i++) {
         List<Radartrack> dataList = new ArrayList<Radartrack>(i);
         switch (i) {
           case 1:
-            logger.debug("Type : Air");
+            logger.info("Type : Air");
             r = new Random();
             DecimalFormat coordinate = new DecimalFormat("#.####");
             coordinate.setRoundingMode(RoundingMode.CEILING);
@@ -86,7 +93,7 @@ public class RandomDataGenerationSimulator {
             break;
 
           case 2:
-            logger.debug("Type : Sea");
+            logger.info("Type : Sea");
             coordinate = new DecimalFormat("#.####");
             coordinate.setRoundingMode(RoundingMode.CEILING);
 
@@ -113,7 +120,7 @@ public class RandomDataGenerationSimulator {
             break;
 
           case 3:
-            logger.debug("Type : Ground");
+            logger.info("Type : Ground");
             Random r = new Random();
             coordinate = new DecimalFormat("#.####");
             coordinate.setRoundingMode(RoundingMode.CEILING);
@@ -141,22 +148,32 @@ public class RandomDataGenerationSimulator {
             break;
 
           default:
-            logger.debug("No data");
+            logger.info("No data");
             break;
         }
 
         for (int j = 0; j < dataList.toArray().length; j++) {
           logger.info("-------Start-------");
-          logger.debug(dataList.get(j).getId() + ","
+          logger.info(dataList.get(j).getId() + ","
               + dataList.get(j).getLatitude() + ","
               + dataList.get(j).getLongitude() + ","
               + dataList.get(j).getHeading() + ","
               + dataList.get(j).getSpeed() + ","
               + dataList.get(j).getArea_types());
+
+          for (Radartrack dataId : allData) {
+            System.out.println("ID : " + dataId.getId());
+            if (dataList.get(j).getId() != dataId.getId()) {
+              mongoTemplate.remove(Query.query(Criteria.where("id").is(dataId.getId())), Radartrack.class);
+            }
+          }
           radarTrackService.saveData(dataList.get(j));
           logger.info("-------end-------");
         }
       }
+
+
+
     }
   }
 }
