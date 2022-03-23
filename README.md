@@ -21,6 +21,9 @@ Sample DB output:
 ![image](https://user-images.githubusercontent.com/10458982/159688959-eec8c84d-19b8-4a85-8a01-2e13fe967bc6.png)
 
 
+Note* : All URL's restricted to localhost.
+
+
             
             
             
